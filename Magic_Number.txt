@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class GuessTheMagicNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean playAgain = true;
+        while (playAgain) {
+            System.out.println("Welcome to the Guess the Magic Number game!");
+            System.out.print("Enter the maximum value for the range: ");
+            int maxRange = scanner.nextInt();
+            int magicNumber = (int) (Math.random() * maxRange) + 1;
+            int userGuess = 0;
+            int attempts = 0;
+            System.out.println("You have selected a number between 1 and " + maxRange + ". Try to guess it!");
+            while (userGuess != magicNumber) {
+                System.out.print("Enter your guess: ");
+                userGuess = scanner.nextInt();
+                attempts++;
+                if (userGuess < magicNumber) {
+                    System.out.println("Too low! Try again.");
+                } else if (userGuess > magicNumber) {
+                    System.out.println("Too high! Try again.");
+                } else {
+                    System.out.println("Congratulations! You've Won!!!!.");
+                    System.out.println("It took you " + attempts + " attempts.");
+                }
+            }
+            System.out.print("Do you want to play again? (yes/no): ");
+            String response = scanner.next();
+            if (response.equalsIgnoreCase("no")) {
+                playAgain = false;
+                System.out.println("Thanks for playing!");
+            }
+        }
+        scanner.close();
+    }
+}
